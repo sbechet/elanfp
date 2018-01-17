@@ -67,11 +67,11 @@ int main(int argc, char* argv[]) {
             r0 = libusb_get_device_descriptor(dev, &desc);
             if (r0 < 0) continue;
 
-            if ((desc.idVendor == 0x04f3) && (desc.idProduct == 0x01cA) ||
-                (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0903) ||
+            if ((desc.idVendor == 0x04f3) && (desc.idProduct == 0x0903) ||
                 (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0907) ||
                 (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c03) ||
-                (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c16) ) {
+                (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c16) ||
+                (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0C1A)) {
                 r0 = 0;
                 printf("Device with vid %x pid %x found.\n", desc.idVendor, desc.idProduct);
                 break;
