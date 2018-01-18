@@ -15,7 +15,7 @@ hardware report
 | 0x0c03 | 96x96   | ?        | ?                  | Konata Izumi     |                            |
 | 0x0c16 | 96x96   | 1.56     | 0x03 & 0x01        | Hans de Goede    |                            |
 | 0x0c1a | ?       | ?        | ?                  | timo@TeEmZe      | 0x40,0x31 before 0x40,0x3F |
-| 0x0c26 | 64x144  | 1.64     | 0x03 & 0x01        | Hans de Goede    | three bitplane             |
+| 0x0c26 | 64x144  | 1.64     | 0x03 & 0x01        | Hans de Goede    |                            |
 
 fact about reset and fuse load
 ==============================
@@ -41,7 +41,7 @@ FK_USB_Command 20171215 for 0x0c16
 |-----------|--------------------------------|------------------------|------------------------|------------------------------|-----------------------------|---------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 | Get       | Image Data                     | 0x00                   | 0x09                   | (None)                       | EP2                         | Image Data                                        | Get Sensor Image (ADC Value)                                                                                                 |
 | Set       | Stop                           | 0x00                   | 0x0B                   | (None)                       | (None)                      | (None)                                            | Stop PreScan                                                                                                                 |
-| Get       | Get Image Size                 | 0x00                   | 0x0C                   | (None)                       | EP3                         | Image Width, 0x00, Image High, 0x00 (4 bytes)     | ReadFP Sensor Size(Length, Width)                                                                                            |
+| Get       | Get Image Size                 | 0x00                   | 0x0C                   | (None)                       | EP3                         | Image Width, 0x00, Image Height, 0x00 (4 bytes)   | ReadFP Sensor Size(Length, Width)                                                                                            |
 | Set       | FP Sensor Reset (Sensor Reset) | 0x40                   | 0x11                   | (None)                       | (None)                      | (None)                                            | FP Sensor Reset FP Sensr Reset command is needs a delay (5ms). It can execute next command                                   |
 | Get       | FP Status                      | 0x40                   | 0x13                   | (None)                       | EP3                         | FP Status                                         | Execute FP Sensor instruction "Read Sensor Status value" (Execute FP Sensor instruction; 0x03)                               |
 | Set       | Fuse_load                      | 0x40                   | 0x14                   | (None)                       | (None)                      | (None)                                            | Execute FP Sensor instruction "Fuse load" (Execute FP Sensor instruction 0x04)                                               |

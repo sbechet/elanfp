@@ -11,8 +11,11 @@
 #define BULK_EP3_IN     0x83
 
 #define IMAGE_PACKET_SIZE (96 * 96 * 2)
-char img_buf[IMAGE_PACKET_SIZE];
+#define SIZE_STORE 256
 
+unsigned char temp_store[SIZE_STORE];
+int width, height, img_buf_len;
+char *img_buf;
 
 char set_cmd_reset[2] = { 0x40, 0x11 };
 char get_cmd_status[2] = { 0x40, 0x13 };
@@ -147,8 +150,8 @@ int main(int argc, char* argv[]) {
     if((r0 == 0) && (transferred == 2)) {
         printf("CMD VERSION sent\n");
     }
-    r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, img_buf, 2, &transferred, 0);
-    printf("FP Bridge FW Version %d.%d\n", img_buf[0], img_buf[1]);
+    r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, temp_store, 2, &transferred, 0);
+    printf("FP Bridge FW Version %d.%d\n", temp_store[0], temp_store[1]);
 
     /* image size */
 
@@ -156,8 +159,12 @@ int main(int argc, char* argv[]) {
     if((r0 == 0) && (transferred == 2)) {
         printf("CMD Get Image Size sent\n");
     }
-    r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, img_buf, 4, &transferred, 0);
-    printf("Width x Height = %dx%d\n", (unsigned char)img_buf[0], (unsigned char)img_buf[2]);
+    r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, temp_store, 4, &transferred, 0);
+    width = temp_store[0];
+    height = temp_store[2];
+    printf("Width x Height = %dx%d\n", width, height);
+    img_buf_len = 2*width*height;
+    img_buf = malloc(img_buf_len);
 
     /* calibration */
 
@@ -167,8 +174,8 @@ int main(int argc, char* argv[]) {
       if((r0 == 0) && (transferred == 2)) {
           printf("CMD Get Calibration Mean sent\n");
       }
-      r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, img_buf, 2, &transferred, 0);
-      i = ((unsigned char)img_buf[0]<<8 | (unsigned char)img_buf[1])&0x0FFFF;
+      r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, temp_store, 2, &transferred, 0);
+      i = ((unsigned char)temp_store[0]<<8 | (unsigned char)temp_store[1])&0x0FFFF;
       printf("calibration mean value: %d (0x%x)\n", i, i);
 
       if (i > 500) {
@@ -202,8 +209,8 @@ int main(int argc, char* argv[]) {
     if((r0 == 0) && (transferred == 2)) {
         printf("CMD Wait For Finger sent\n");
     }
-    r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, img_buf, 1, &transferred, 0);
-    printf("Received 0x%x\n", img_buf[0]);
+    r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, temp_store, 1, &transferred, 0);
+    printf("Received 0x%x\n", temp_store[0]);
 
     /* get image */
 
@@ -211,12 +218,13 @@ int main(int argc, char* argv[]) {
     if((r0 == 0) && (transferred == 2)) {
         printf("CMD Get Image sent\n");
     }
-    r0 = libusb_bulk_transfer(handle, BULK_EP2_IN, img_buf, IMAGE_PACKET_SIZE, &transferred, 0);
+    r0 = libusb_bulk_transfer(handle, BULK_EP2_IN, img_buf, img_buf_len, &transferred, 0);
     printf("Received %d\n", transferred);
 
-    write_to_file(img_buf, IMAGE_PACKET_SIZE);
+    write_to_file(img_buf, img_buf_len);
 
-    system("convert -depth 16 -size 96x96+0 gray:out.fp ./out.png");
+    snprintf(temp_store, SIZE_STORE, "convert -depth 16 -size %dx%d+0 gray:out.fp ./out.png", width, height);
+    system(temp_store);
     system("rm ./out.fp");
 
 app_exit_2:
