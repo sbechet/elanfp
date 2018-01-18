@@ -189,6 +189,8 @@ int main(int argc, char* argv[]) {
         r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, &result, 1, &transferred, 0);
         printf("Calibration Status: 0x%x\n", result);
 
+        if (result == 0x03) break; /* FW>1.53? */
+
         /* Seems to update calibration image mean value. FW<=1.53? */
         r0 = libusb_bulk_transfer(handle, BULK_EP1_OUT, get_cmd_status, 2, &transferred, 0);
         if((r0 == 0) && (transferred == 2)) {
@@ -196,8 +198,6 @@ int main(int argc, char* argv[]) {
         }
         r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, &result, 1, &transferred, 0);
         printf("Status: 0x%x\n", result);
-
-        if (result == 0x03) break; /* FW>1.53? */
 
         usleep(5000);
       }
