@@ -57,4 +57,4 @@ FK_USB_Command 20171215 for 0x0c16
 
 Note:
 * 0x40,0x23 return calibration mean for FW=1.53 (see Sebastien Bechet)
-* 0x40,0x31 is a mistery for 0x0c1a. Called just before 0x00,0x3F (see timo@TeEmZe)
+* 0x40,0x31 is a mistery for 0x0c1a. Called just before 0x40,0x3F (see timo@TeEmZe)
