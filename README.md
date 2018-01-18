@@ -25,7 +25,7 @@ fact about reset and fuse load
 
 Q: `Elan_FP_Rest_calibration.pdf` informs us about the reset _and_ the calibration. Should we reset before calibration?
 
-fact about break condition for calibration
+Fact about break condition for calibration
 ==========================================
 
 # 0x01|NOK && 0x03|OK
@@ -64,4 +64,6 @@ FK_USB_Command 20171215 for 0x0c16
 | Set       | Set Reg                        | 0x40                   | 0x40~0xBF              | Reg Data (1 byte)            | (None)                      | (None)                                            | Set FP Sensor Register Command                                                                                               |
 
 
-Note: 0x40,0x23 return calibration mean for FW=1.53
+Note:
+* 0x40,0x23 return calibration mean for FW=1.53 (see Sebastien Bechet)
+* 0x40,0x31 is a mistery for 0x0c1a. Called just before 0x00,0x3F (see timo@TeEmZe)
