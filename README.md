@@ -8,13 +8,14 @@ Vendor: 0x04f3
 hardware report
 ===============
 
-| id     | size    | firmware | who
-| ------ | ------- | -------- | ----
-| 0x0903 | 96x96   | 1.53     | Sebastien Bechet
-| 0x0907 | 144x64  | ?        | Igor Filatov
-| 0x0c03 | 96x96   | ?        | Konata Izumi
-| 0x0c16 | ?       | ?        | Hans de Goede
-| 0x0c1a | ?       | ?        | timo@TeEmZe
+| id     | size    | firmware | Calibration status | who
+| ------ | ------- | -------- | ------------------ | ----
+| 0x0903 | 96x96   | 1.53     | Mean_H             | Sebastien Bechet
+| 0x0907 | 144x64  | ?        | 0x03 & 0x01        | Igor Filatov
+| 0x0c03 | 96x96   | ?        | ?                  | Konata Izumi
+| 0x0c16 | 96x96   | 1.56     | 0x03 & 0x01        | Hans de Goede
+| 0x0c1a | ?       | ?        | ?                  | timo@TeEmZe
+| 0x0c26 | 64x144  | 1.64     | 0x03 & 0x01        | Hans de Goede
 
 fact about reset and fuse load
 ==============================
@@ -24,16 +25,6 @@ fact about reset and fuse load
 * What are the cases where these commands are useful?
 
 Q: `Elan_FP_Rest_calibration.pdf` informs us about the reset _and_ the calibration. Should we reset before calibration?
-
-Fact about break condition for calibration
-==========================================
-
-# 0x01|NOK && 0x03|OK
-
-* Working for: 0x0907, 0x0c16
-* Not working for: 0x0903
-
-Q: Is the current `elanfp.c#calibration` version work for every version?
 
 Preparation of questions for KT@Elan
 ====================================

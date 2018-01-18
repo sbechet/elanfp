@@ -71,6 +71,7 @@ int main(int argc, char* argv[]) {
                 (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0907) ||
                 (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c03) ||
                 (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c16) ||
+                (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c26) ||
                 (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c1a)) {
                 r0 = 0;
                 printf("Device with vid %x pid %x found.\n", desc.idVendor, desc.idProduct);
@@ -156,7 +157,7 @@ int main(int argc, char* argv[]) {
         printf("CMD Get Image Size sent\n");
     }
     r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, img_buf, 4, &transferred, 0);
-    printf("Width x height = %dx%d\n", img_buf[0], img_buf[2]);
+    printf("Width x Height = %dx%d\n", (unsigned char)img_buf[0], (unsigned char)img_buf[2]);
 
     /* calibration */
 
