@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
                 (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0907) ||
                 (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c03) ||
                 (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c16) ||
-                (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0C1A)) {
+                (desc.idVendor == 0x04f3) && (desc.idProduct == 0x0c1a)) {
                 r0 = 0;
                 printf("Device with vid %x pid %x found.\n", desc.idVendor, desc.idProduct);
                 break;
@@ -181,6 +181,7 @@ int main(int argc, char* argv[]) {
         r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, &result, 1, &transferred, 0);
         printf("Calibration Status: 0x%x\n", result);
 
+        /* Seems to update calibration image mean value. FW<=1.53? */
         r0 = libusb_bulk_transfer(handle, BULK_EP1_OUT, get_cmd_status, 2, &transferred, 0);
         if((r0 == 0) && (transferred == 2)) {
             printf("CMD STATUS sent\n");
@@ -188,7 +189,7 @@ int main(int argc, char* argv[]) {
         r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, &result, 1, &transferred, 0);
         printf("Status: 0x%x\n", result);
 
-        if (result == 0x03) break; /* Never happend, always 0x01! */
+        if (result == 0x03) break; /* FW>1.53? */
 
         usleep(5000);
       }
