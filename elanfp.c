@@ -134,15 +134,15 @@ int main(int argc, char* argv[]) {
 
     /* reset */
 
-    // r0 = libusb_bulk_transfer(handle, BULK_EP1_OUT, set_cmd_reset, 2, &transferred, 0);
-    // if((r0 == 0) && (transferred == 2)) {
-    //     printf("CMD RESET sent\n");
-    // }
-    // usleep(5000);
-    // r0 = libusb_bulk_transfer(handle, BULK_EP1_OUT, set_cmd_fuse_load, 2, &transferred, 0);
-    // if((r0 == 0) && (transferred == 2)) {
-    //     printf("CMD Fuse Load sent\n");
-    // }
+    r0 = libusb_bulk_transfer(handle, BULK_EP1_OUT, set_cmd_reset, 2, &transferred, 0);
+    if((r0 == 0) && (transferred == 2)) {
+        printf("CMD RESET sent\n");
+    }
+    usleep(5000);
+    r0 = libusb_bulk_transfer(handle, BULK_EP1_OUT, set_cmd_fuse_load, 2, &transferred, 0);
+    if((r0 == 0) && (transferred == 2)) {
+        printf("CMD Fuse Load sent\n");
+    }
 
     /* version */
 
