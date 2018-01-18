@@ -8,14 +8,14 @@ Vendor: 0x04f3
 hardware report
 ===============
 
-| id     | size    | firmware | Calibration status | who              | Note           |
-| ------ | ------- | -------- | ------------------ | ---------------- | -------------- |
-| 0x0903 | 96x96   | 1.53     | Mean_H             | Sebastien Bechet |                |
-| 0x0907 | 144x64  | ?        | 0x03 & 0x01        | Igor Filatov     |                |
-| 0x0c03 | 96x96   | ?        | ?                  | Konata Izumi     |                |
-| 0x0c16 | 96x96   | 1.56     | 0x03 & 0x01        | Hans de Goede    |                |
-| 0x0c1a | ?       | ?        | ?                  | timo@TeEmZe      |                |
-| 0x0c26 | 64x144  | 1.64     | 0x03 & 0x01        | Hans de Goede    | three bitplane |
+| id     | size    | firmware | Calibration status | who              | Note                       |
+| ------ | ------- | -------- | ------------------ | ---------------- | -------------------------- |
+| 0x0903 | 96x96   | 1.53     | Mean_H             | Sebastien Bechet |                            |
+| 0x0907 | 144x64  | ?        | 0x03 & 0x01        | Igor Filatov     |                            |
+| 0x0c03 | 96x96   | ?        | ?                  | Konata Izumi     |                            |
+| 0x0c16 | 96x96   | 1.56     | 0x03 & 0x01        | Hans de Goede    |                            |
+| 0x0c1a | ?       | ?        | ?                  | timo@TeEmZe      | 0x40,0x31 before 0x40,0x3F |
+| 0x0c26 | 64x144  | 1.64     | 0x03 & 0x01        | Hans de Goede    | three bitplane             |
 
 fact about reset and fuse load
 ==============================
@@ -53,8 +53,3 @@ FK_USB_Command 20171215 for 0x0c16
 | Get       | Pre-Scan                       | 0x40                   | 0x3F                   | (None)                       | EP3                         | Status (1 byte) 0x55 = Object                     | Execute FP Pre-Scan (Detect Object on FP Sensor) (It needs polling return value until getting FP reply value from Endpoint3) |
 | Get       | Get Reg Data                   | 0x40                   | 0x40~0x7F              | (None)                       | EP3                         | Reg Data (1 byte)                                 | Get FP Sensor Register Command                                                                                               |
 | Set       | Set Reg                        | 0x40                   | 0x40~0xBF              | Reg Data (1 byte)            | (None)                      | (None)                                            | Set FP Sensor Register Command                                                                                               |
-
-
-Note:
-* 0x40,0x23 return calibration mean for FW=1.53 (see Sebastien Bechet)
-* 0x40,0x31 is a mistery for 0x0c1a. Called just before 0x40,0x3F (see timo@TeEmZe)
