@@ -53,3 +53,14 @@ FK_USB_Command 20171215 for 0x0c16
 | Get       | Pre-Scan                       | 0x40                   | 0x3F                   | (None)                       | EP3                         | Status (1 byte) 0x55 = Object                     | Execute FP Pre-Scan (Detect Object on FP Sensor) (It needs polling return value until getting FP reply value from Endpoint3) |
 | Get       | Get Reg Data                   | 0x40                   | 0x40~0x7F              | (None)                       | EP3                         | Reg Data (1 byte)                                 | Get FP Sensor Register Command                                                                                               |
 | Set       | Set Reg                        | 0x40                   | 0x40~0xBF              | Reg Data (1 byte)            | (None)                      | (None)                                            | Set FP Sensor Register Command                                                                                               |
+
+Linux USB RIP
+=============
+
+```
+# modprobe usbmon
+# tshark -D
+# tshark -i usbmon0 -w rip.pcap
+```
+
+It is then possible to launch windows in a virtual machine by attaching the usb to it.
