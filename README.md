@@ -10,7 +10,7 @@ hardware report
 
 | id     | size    | firmware | Calibration status | who              | Note                                     |
 | ------ | ------- | -------- | ------------------ | ---------------- | ---------------------------------------- |
-| 0x0903 | 96x96   | 1.53     | Mean_H             | Sebastien Bechet | _must_ reset then status for calibration |
+| 0x0903 | 96x96   | 1.53     | Mean_H             | Sebastien Bechet | 0x40,0x23 does not exist as hoped?       |
 | 0x0907 | 144x64  | ?        | 0x03 & 0x01        | Igor Filatov     |                                          |
 | 0x0c03 | 96x96   | ?        | ?                  | Konata Izumi     |                                          |
 | 0x0c16 | 96x96   | 1.56     | 0x03 & 0x01        | Hans de Goede    |                                          |
@@ -31,8 +31,10 @@ Preparation of questions for KT@Elan
 
 * Can we have usd-id full list?
 * Can we use firmware version to know differences beetween commandset?
-* Is it possible to have the documentation of the commands according to the firmware version?
-
+* Is the firmware version fixed for each hardware?
+* Is it possible to have the documentation of the commands according to the firmware version or hardware id?
+* Should we reset before calibration?
+* When reset then fuse load useful?
 
 FK_USB_Command 20171215 for 0x0c16
 ==================================
