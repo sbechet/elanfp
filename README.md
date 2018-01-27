@@ -1,7 +1,7 @@
 elanfp
 ======
 
-POC for [Elan driver](https://github.com/iafilatov/libfprint/) generalisation
+POC for [Elan driver](https://github.com/iafilatov/libfprint/) generalisation. Please do not use elanfp but Igor driver for test.
 
 Vendor: 0x04f3
 
@@ -14,7 +14,7 @@ hardware report
 | 0x0907 | 144x64  | ?        | 0x03 & 0x01        | Igor Filatov     |                                          |
 | 0x0c03 | 96x96   | ?        | ?                  | Konata Izumi     |                                          |
 | 0x0c16 | 96x96   | 1.56     | 0x03 & 0x01        | Hans de Goede    |                                          |
-| 0x0c1a | ?       | ?        | ?                  | timo@TeEmZe      | 0x40,0x31 before 0x40,0x3F               |
+| 0x0c1a | 144x64  | 1.66     | 0x03 & 0x01        | timo@TeEmZe      | 0x40,0x31 before 0x40,0x3F               |
 | 0x0c26 | 64x144  | 1.64     | 0x03 & 0x01        | Hans de Goede    |                                          |
 
 fact about reset and fuse load
