@@ -162,7 +162,7 @@ int main(int argc, char* argv[]) {
     r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, temp_store, 4, &transferred, 0);
     width = temp_store[0];
     height = temp_store[2];
-    printf("Width x Height = %dx%d\n", width, height);
+    printf("Width x Height (before rotation) = %dx%d\n", width, height);
     img_buf_len = 2*width*height;
     img_buf = malloc(img_buf_len);
 
