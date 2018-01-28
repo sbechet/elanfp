@@ -11,7 +11,7 @@ hardware report
 | id     | size    | firmware | Calibration status | who              | Note                                     |
 | ------ | ------- | -------- | ------------------ | ---------------- | ---------------------------------------- |
 | 0x0903 | 96x96   | 1.53     | Mean_H             | Sebastien Bechet | 0x40,0x23 does not exist as hoped?       |
-| 0x0907 | 144x64  | ?        | 0x03 & 0x01        | Igor Filatov     |                                          |
+| 0x0907 | 144x64  | 1.65     | 0x03 & 0x01        | Igor Filatov     |                                          |
 | 0x0c03 | 96x96   | ?        | ?                  | Konata Izumi     |                                          |
 | 0x0c16 | 96x96   | 1.56     | 0x03 & 0x01        | Hans de Goede    |                                          |
 | 0x0c1a | 144x64  | 1.66     | 0x03 & 0x01        | timo@TeEmZe      | 0x40,0x31 before 0x40,0x3F               |
