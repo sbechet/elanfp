@@ -58,7 +58,9 @@ For   2^ 14 to 2^8 resolution down grade . Elan suggest using non-linear Normali
 
 For example
 
-![Non-linear Normalize ( Current Image [x][y] –Background [x][y])](image003.jpg)
+Non-linear Normalize ( Current Image [x][y] –Background [x][y])
+
+![Non-linear Normalize ( Current Image [x][y] –Background [x][y])](image003.jpg "Non-linear Normalize ( Current Image [x][y] –Background [x][y])")
 
 Calibration Flow
 ================
