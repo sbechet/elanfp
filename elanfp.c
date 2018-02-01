@@ -151,7 +151,7 @@ int main(int argc, char* argv[]) {
         printf("CMD VERSION sent\n");
     }
     r0 = libusb_bulk_transfer(handle, BULK_EP3_IN, temp_store, 2, &transferred, 0);
-    printf("FP Bridge FW Version %d.%d\n", temp_store[0], temp_store[1]);
+    printf("FP Bridge FW Version 0x%02x%02x\n", temp_store[0], temp_store[1]);
 
     /* image size */
 
