@@ -52,20 +52,26 @@ FK_USB_Command
 Image
 =====
 
-Elan FP Sensor provide  14bit ADC resolution  (Range 0~ 16383)  and   its format is  2 bytes/one pixel.
+Elan FP Sensor provide  14bit ADC resolution  (Range 0~16383) and its format is 2 bytes/one pixel.
 
-For   2^ 14 to 2^8 resolution down grade . Elan suggest using non-linear Normalize algorithm.
+For 2^14 to 2^8 resolution down grade. Elan suggest using non-linear Normalize algorithm.
 
 For example
 
-Non-linear Normalize ( Current Image [x][y] –Background [x][y])
+Non-linear Normalize (Current Image [x][y] - Background [x][y])
 
-![Non-linear Normalize ( Current Image [x][y] –Background [x][y])](image003.jpg "Non-linear Normalize ( Current Image [x][y] –Background [x][y])")
+![Non-linear Normalize (Current Image [x][y] - Background [x][y])](image003.jpg "Non-linear Normalize (Current Image [x][y] - Background [x][y])")
 
 Calibration Flow
 ================
 
-[ELAN] Correct Flow :  0x4023 --> wait 50 ms --> read, check ->0x4023 --> wait 50 ms --> read, check … ( until device reply  0x03 value)
+[ELAN] Correct Flow :  
+
+```
+0x4023 --> wait 50 ms --> read,
+check ->0x4023 --> wait 50 ms --> read,
+check … ( until device reply  0x03 value)
+```
 
 Linux USB RIP
 =============
